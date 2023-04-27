@@ -1,13 +1,13 @@
-function Invoke-BloodHound
+function Invoke-Happy
 {
     <#
     .SYNOPSIS
 
-        Runs the BloodHound C# Ingestor using reflection. The assembly is stored in this file.
+        Runs the Happy C# Ingestor using reflection. The assembly is stored in this file.
 
     .DESCRIPTION
 
-        Using reflection and assembly.load, load the compiled BloodHound C# ingestor into memory
+        Using reflection and assembly.load, load the compiled Happy C# ingestor into memory
         and run it without touching disk. Parameters are converted to the equivalent CLI arguments
         for the SharpHound executable and passed in via reflection. The appropriate function
         calls are made in order to ensure that assembly dependencies are loaded properly.
@@ -211,28 +211,28 @@ function Invoke-BloodHound
 
     .EXAMPLE
 
-        PS C:\> Invoke-BloodHound
+        PS C:\> Invoke-Happy
 
         Executes the default collection options and exports JSONs to the current directory, compresses the data to a zip file,
         and then removes the JSON files from disk
 
     .EXAMPLE
 
-        PS C:\> Invoke-BloodHound -Loop -LoopInterval 00:01:00 -LoopDuration 00:10:00
+        PS C:\> Invoke-Happy -Loop -LoopInterval 00:01:00 -LoopDuration 00:10:00
 
         Executes session collection in a loop. Will wait 1 minute after each run to continue collection
         and will continue running for 10 minutes after which the script will exit
 
     .EXAMPLE
 
-        PS C:\> Invoke-BloodHound -CollectionMethod All
+        PS C:\> Invoke-Happy -CollectionMethod All
 
         Runs ACL, ObjectProps, Container, and Default collection methods, compresses the data to a zip file,
         and then removes the JSON files from disk
 
     .EXAMPLE
 
-        PS C:\> Invoke-BloodHound -CollectionMethod DCOnly -NoSaveCache -RandomizeFilenames -EncryptZip
+        PS C:\> Invoke-Happy -CollectionMethod DCOnly -NoSaveCache -RandomizeFilenames -EncryptZip
 
         (Opsec!) Run LDAP only collection methods (Groups, Trusts, ObjectProps, ACL, Containers, GPO Admins) without outputting the cache file to disk.
         Randomizes filenames of the JSON files and the zip file and adds a password to the zip file
